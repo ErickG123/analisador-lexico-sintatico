@@ -1,0 +1,266 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> expressao
+Rule 2     expressao -> expressao SOMA expressao
+Rule 3     expressao -> expressao SUBTRACAO expressao
+Rule 4     expressao -> expressao MULTIPLICACAO expressao
+Rule 5     expressao -> expressao DIVISAO expressao
+Rule 6     expressao -> NUMERO
+Rule 7     expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES
+
+Terminals, with rules where they appear
+
+ABRE_PARENTESES      : 7
+DIVISAO              : 5
+FECHA_PARENTESES     : 7
+MULTIPLICACAO        : 4
+NUMERO               : 6
+SOMA                 : 2
+SUBTRACAO            : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+expressao            : 1 2 2 3 3 4 4 5 5 7
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . expressao
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    programa                       shift and go to state 1
+    expressao                      shift and go to state 2
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> expressao .
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    $end            reduce using rule 1 (programa -> expressao .)
+    SOMA            shift and go to state 5
+    SUBTRACAO       shift and go to state 6
+    MULTIPLICACAO   shift and go to state 7
+    DIVISAO         shift and go to state 8
+
+
+state 3
+
+    (6) expressao -> NUMERO .
+
+    SOMA            reduce using rule 6 (expressao -> NUMERO .)
+    SUBTRACAO       reduce using rule 6 (expressao -> NUMERO .)
+    MULTIPLICACAO   reduce using rule 6 (expressao -> NUMERO .)
+    DIVISAO         reduce using rule 6 (expressao -> NUMERO .)
+    $end            reduce using rule 6 (expressao -> NUMERO .)
+    FECHA_PARENTESES reduce using rule 6 (expressao -> NUMERO .)
+
+
+state 4
+
+    (7) expressao -> ABRE_PARENTESES . expressao FECHA_PARENTESES
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    expressao                      shift and go to state 9
+
+state 5
+
+    (2) expressao -> expressao SOMA . expressao
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    expressao                      shift and go to state 10
+
+state 6
+
+    (3) expressao -> expressao SUBTRACAO . expressao
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    expressao                      shift and go to state 11
+
+state 7
+
+    (4) expressao -> expressao MULTIPLICACAO . expressao
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    expressao                      shift and go to state 12
+
+state 8
+
+    (5) expressao -> expressao DIVISAO . expressao
+    (2) expressao -> . expressao SOMA expressao
+    (3) expressao -> . expressao SUBTRACAO expressao
+    (4) expressao -> . expressao MULTIPLICACAO expressao
+    (5) expressao -> . expressao DIVISAO expressao
+    (6) expressao -> . NUMERO
+    (7) expressao -> . ABRE_PARENTESES expressao FECHA_PARENTESES
+
+    NUMERO          shift and go to state 3
+    ABRE_PARENTESES shift and go to state 4
+
+    expressao                      shift and go to state 13
+
+state 9
+
+    (7) expressao -> ABRE_PARENTESES expressao . FECHA_PARENTESES
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    FECHA_PARENTESES shift and go to state 14
+    SOMA            shift and go to state 5
+    SUBTRACAO       shift and go to state 6
+    MULTIPLICACAO   shift and go to state 7
+    DIVISAO         shift and go to state 8
+
+
+state 10
+
+    (2) expressao -> expressao SOMA expressao .
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    SOMA            reduce using rule 2 (expressao -> expressao SOMA expressao .)
+    SUBTRACAO       reduce using rule 2 (expressao -> expressao SOMA expressao .)
+    $end            reduce using rule 2 (expressao -> expressao SOMA expressao .)
+    FECHA_PARENTESES reduce using rule 2 (expressao -> expressao SOMA expressao .)
+    MULTIPLICACAO   shift and go to state 7
+    DIVISAO         shift and go to state 8
+
+  ! MULTIPLICACAO   [ reduce using rule 2 (expressao -> expressao SOMA expressao .) ]
+  ! DIVISAO         [ reduce using rule 2 (expressao -> expressao SOMA expressao .) ]
+  ! SOMA            [ shift and go to state 5 ]
+  ! SUBTRACAO       [ shift and go to state 6 ]
+
+
+state 11
+
+    (3) expressao -> expressao SUBTRACAO expressao .
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    SOMA            reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .)
+    SUBTRACAO       reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .)
+    $end            reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .)
+    FECHA_PARENTESES reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .)
+    MULTIPLICACAO   shift and go to state 7
+    DIVISAO         shift and go to state 8
+
+  ! MULTIPLICACAO   [ reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .) ]
+  ! DIVISAO         [ reduce using rule 3 (expressao -> expressao SUBTRACAO expressao .) ]
+  ! SOMA            [ shift and go to state 5 ]
+  ! SUBTRACAO       [ shift and go to state 6 ]
+
+
+state 12
+
+    (4) expressao -> expressao MULTIPLICACAO expressao .
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    SOMA            reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+    SUBTRACAO       reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+    MULTIPLICACAO   reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+    DIVISAO         reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+    $end            reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+    FECHA_PARENTESES reduce using rule 4 (expressao -> expressao MULTIPLICACAO expressao .)
+
+  ! SOMA            [ shift and go to state 5 ]
+  ! SUBTRACAO       [ shift and go to state 6 ]
+  ! MULTIPLICACAO   [ shift and go to state 7 ]
+  ! DIVISAO         [ shift and go to state 8 ]
+
+
+state 13
+
+    (5) expressao -> expressao DIVISAO expressao .
+    (2) expressao -> expressao . SOMA expressao
+    (3) expressao -> expressao . SUBTRACAO expressao
+    (4) expressao -> expressao . MULTIPLICACAO expressao
+    (5) expressao -> expressao . DIVISAO expressao
+
+    SOMA            reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+    SUBTRACAO       reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+    MULTIPLICACAO   reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+    DIVISAO         reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+    $end            reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+    FECHA_PARENTESES reduce using rule 5 (expressao -> expressao DIVISAO expressao .)
+
+  ! SOMA            [ shift and go to state 5 ]
+  ! SUBTRACAO       [ shift and go to state 6 ]
+  ! MULTIPLICACAO   [ shift and go to state 7 ]
+  ! DIVISAO         [ shift and go to state 8 ]
+
+
+state 14
+
+    (7) expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .
+
+    SOMA            reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+    SUBTRACAO       reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+    MULTIPLICACAO   reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+    DIVISAO         reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+    $end            reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+    FECHA_PARENTESES reduce using rule 7 (expressao -> ABRE_PARENTESES expressao FECHA_PARENTESES .)
+
