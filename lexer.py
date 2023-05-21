@@ -1,3 +1,4 @@
+# Importação da biblioteca ply
 import ply.lex as lex
 
 # Lista de tokens

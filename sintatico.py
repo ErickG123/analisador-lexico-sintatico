@@ -1,4 +1,7 @@
+# Importação da biblioteca ply
 import ply.yacc as yacc
+
+# Importação dos tokens definidos no analisador léxico
 from lexer import tokens
 
 # Definição da precedência e associatividade dos operadores
